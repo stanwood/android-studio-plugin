@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="io.stanwood.android.main" target="1.8" />
+      <module name="io.stanwood.android.test" target="1.8" />
+      <module name="io.stanwood.stanwood-android-plugin.main" target="11" />
+      <module name="io.stanwood.stanwood-android-plugin.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

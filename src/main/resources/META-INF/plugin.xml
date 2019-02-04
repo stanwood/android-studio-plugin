@@ -1,0 +1,35 @@
+<idea-plugin>
+    <id>io.stanwood.android</id>
+    <name>stanwood Android templates</name>
+    <vendor email="sven.bendel@stanwood.io" url="https://stanwood.io">stanwood Softwareentwicklungs GmbH</vendor>
+    <category>code editing</category>
+
+    <description><![CDATA[
+    A bundle of templates for developing Android apps at stanwood.
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+    <depends>org.jetbrains.android</depends>
+
+    <actions>
+        <group id="io.stanwood.android.fileTemplates"
+               text="Stanwood"
+               popup="true">
+
+        </group>
+    </actions>
+
+    <application-components>
+        <component>
+            <implementation-class>io.stanwood.android.StanwoodApplicationComponent</implementation-class>
+        </component>
+    </application-components>
+
+</idea-plugin>
