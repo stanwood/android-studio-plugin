@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<template format="5"
+    revision="1"
+    name="Ripple Selector"
+    description="Create ripple selector">
+
+    <category value="Stanwood" />
+
+    <parameter id="selectorName"
+        name="Selector Name"
+        type="string"
+        suggest="${('selector_'+colorName+'_'+shapeType)?replace('_none', '')}"
+        constraints="nonempty|drawable|unique"
+        default="selector_test" />
+
+    <parameter id="shapeType"
+        name="Shape Type"
+        type="enum"
+        default="none"
+        help="The type of shape to use for the selector">
+        <option id="none">None</option>
+        <option id="rectangle">Rectangle</option>
+        <option id="oval">Oval</option>
+    </parameter>
+
+    <parameter id="cornerRadius"
+        name="Corner Radius"
+        type="string"
+        visibility="shapeType == 'rectangle'"
+        constraints="nonempty"
+        help="The corner radius (dp)"
+        default="0" />
+
+    <parameter id="cornerRadiusName"
+        name="Corner Radius Name"
+        type="string"
+        visibility="shapeType == 'rectangle' &amp;&amp; cornerRadius?number > 0"
+        constraints="nonempty"
+        help="The corner radius resource name"
+        default="corner_radius_normal" />
+
+    <parameter id="colorName"
+        name="Color Name"
+        type="string"
+        constraints="nonempty|drawable"
+        help="The color resource name (https://www.htmlcsscolor.com/hex)"
+        default="white" />
+
+    <parameter id="color"
+        name="Color"
+        type="string"
+        constraints="nonempty"
+        default="#ffffff" />
+
+    <parameter id="usePressedColor"
+        name="Pressed color"
+        type="boolean"
+        default="false"/>
+
+    <parameter id="pressedColorName"
+        name="Color Name"
+        type="string"
+        visibility="usePressedColor"
+        constraints="nonempty|drawable"
+        help="The color resource name (https://www.htmlcsscolor.com/hex)"
+        default="oasis" />
+
+    <parameter id="pressedColor"
+        name="Color"
+        type="string"
+        visibility="usePressedColor"
+        constraints="nonempty"
+        default="#fff2cc" />
+
+    <parameter id="useSelectedColor"
+        name="Selected color"
+        type="boolean"
+        default="false"/>
+
+    <parameter id="selectedColorName"
+        name="Color Name"
+        type="string"
+        visibility="useSelectedColor"
+        constraints="nonempty|drawable"
+        help="The color resource name (https://www.htmlcsscolor.com/hex)"
+        default="madang" />
+
+    <parameter id="selectedColor"
+        name="Color"
+        type="string"
+        visibility="useSelectedColor"
+        constraints="nonempty"
+        default="#b6d7a8" />
+
+    <parameter id="useDisabledColor"
+        name="Disabled color"
+        type="boolean"
+        default="false"/>
+
+    <parameter id="disabledColorName"
+        name="Color Name"
+        type="string"
+        visibility="useDisabledColor"
+        constraints="nonempty|drawable"
+        help="The color resource name (https://www.htmlcsscolor.com/hex)"
+        default="silver" />
+
+    <parameter id="disabledColor"
+        name="Color"
+        type="string"
+        visibility="useDisabledColor"
+        constraints="nonempty"
+        default="#bfbfbf" />
+
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

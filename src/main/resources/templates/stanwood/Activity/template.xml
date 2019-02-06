@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="Activity"
+    minApi="9"
+    minBuildApi="14"
+    description="Creates a new Activity">
+
+    <category value="Stanwood"/>
+
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${layoutToActivity(layoutName)}"
+        default="MainActivity"
+        help="The name of the activity class to create"/>
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityClass)}"
+        default="activity_main"
+        help="The name of the layout to create for the activity"/>
+    
+    <parameter
+        id="isNavHost"
+        name="Navigation Host Activity"
+        type="boolean"
+        default="false"
+        help="If true, the activity will be a navigation host."/>
+
+    <parameter
+        id="navGraphName"
+        name="Navigation Graph Name"
+        type="string"
+        constraints="nonempty"
+        visibility="isNavHost"
+        suggest="${activityToLayout(activityClass, 'nav_graph')}"
+        default="nav_graph_new_feature"
+        help="The name of the navigation graph used by navigation host fragment"/>
+
+    <parameter
+        id="useLoader"
+        name="Create Loader"
+        type="boolean"
+        default="false"
+        help="If true, a Loader will be created"/>
+
+    <parameter
+        id="loaderName"
+        name="Loader Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="NewLoader"
+        visibility="useLoader"
+        suggest="${activityClass?replace('Activity', 'Loader')}"
+        help="The name of the Loader class to create" />
+    
+    <parameter
+        id="isLauncher"
+        name="Launcher Activity"
+        type="boolean"
+        default="false"
+        help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher"/>    
+
+    <globals file="globals.xml.ftl"/>
+    <execute file="recipe.xml.ftl"/>
+
+</template>

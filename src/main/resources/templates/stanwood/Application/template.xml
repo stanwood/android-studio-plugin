@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="Application"
+    description="Adds default application architecture to project">
+ 
+    <category value="Stanwood" />
+    <parameter
+        id="className"
+        name="Class Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="StanwoodApp" />
+
+    <parameter
+            id="useGlide"
+            name="Add Glide Module"
+            type="boolean"
+            default="true"
+            help="If true, a Glide Module will be added"/>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
