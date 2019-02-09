@@ -38,9 +38,11 @@ intellij {
     updateSinceUntilBuild true
     
 }
+
 patchPluginXml {
     changeNotes """
       Initial Release"""
     sinceBuild '181'
     untilBuild '182.*'
+    version '0.9.1'
 }

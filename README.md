@@ -2,6 +2,8 @@
 
 _This Android Studio plugin brings rapid app development to all Android developers at stanwood._
 
+[JetBrains plugin page](https://plugins.jetbrains.com/plugin/11954-stanwood-android-templates)
+
 ## Installation
 
 Just search for Stanwood in the Jetbrains Plugin Repository and install right from your IDE. :)

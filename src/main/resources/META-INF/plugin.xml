@@ -1,8 +1,8 @@
 <idea-plugin>
     <id>io.stanwood.android</id>
     <name>stanwood Android templates</name>
-    <vendor email="sven.bendel@stanwood.io" url="https://stanwood.io">stanwood Softwareentwicklungs GmbH</vendor>
-    <category>code editing</category>
+    <vendor email="andre.classen@stanwood.io" url="https://stanwood.io">stanwood Softwareentwicklungs GmbH</vendor>
+    <category>Android</category>
 
     <description><![CDATA[
     A bundle of templates for developing Android apps at stanwood.
