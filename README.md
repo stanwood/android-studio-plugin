@@ -20,6 +20,7 @@ Currently the plugin provides a set of templates and wizards which you can find 
 1. Adapt the distribution and _android.jar_ plugin path to your local AS distribution (best use AS 3.3 for that).
 1. Add a IntelliJ Plugin SDK, Java 1.8 SDK and Kotlin SDK to the project.
 1. Do not run via the run menu - instead just run `./gradlew buildPlugin` via the terminal and then install the JAR (find it in `build/libs`) from within AS plugin manager (_Install from disk_).
+1. Before uploading a new version make sure to increase the version in `build.gradle`
 
 Check out AS logs when the plugin misbehaves.
 
