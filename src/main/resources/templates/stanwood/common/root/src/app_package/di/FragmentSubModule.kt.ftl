@@ -1,21 +1,19 @@
 package ${kotlinEscapedPackageName}.di
 
-import androidx.databinding.DataBindingComponent
-import androidx.lifecycle.ViewModelProviders
 import dagger.Module
-<#if useDataProvider!true || useGlide!false>
 import ${kotlinEscapedPackageName}.ui.${className}
 import dagger.Provides
-</#if>
 <#if useDataProvider!true>
 import io.stanwood.framework.arch.di.factory.ViewDataProviderFactory
 import ${kotlinEscapedPackageName}.dataprovider.${dataProviderName}
 import ${kotlinEscapedPackageName}.dataprovider.${dataProviderName}Impl
+import androidx.lifecycle.ViewModelProviders
 </#if>
 <#if useGlide!false>
 import ${kotlinEscapedAppPackageName}.glide.GlideAppFactory
 import ${kotlinEscapedAppPackageName}.glide.GlideAppFragmentFactory
 import ${kotlinEscapedAppPackageName}.glide.ImageViewBindingAdapters
+import androidx.databinding.DataBindingComponent
 </#if>
 @Module
 class ${className}SubModule {
