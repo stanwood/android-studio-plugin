@@ -1,5 +1,5 @@
 <globals>
-    <global id="versionArchFramework" value="c5c95b096515b865f4bab09cac777c5295a289df" />
+    <global id="versionArchFramework" value="1a9b6da5793afe707033a50b9de170b22fe51923" />
     <global id="versionNetworkFramework" value="754f3293424e35dac5465f65a04ec971340b19cc" />
     <global id="versionCoreFramework" value="9838fb5ec24dbb98a816e0d0c1a191203bdcfd22" />
     <global id="versionDagger" value="2.21" />
