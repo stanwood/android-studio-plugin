@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<template format="5" 
+    revision="1" 
+    name="Fragment (ViewPager)" 
+    description="Create a ViewPager Fragment" 
+    minApi="21" 
+    minBuildApi="21">
+
+    <category value="Stanwood" />
+
+    <parameter id="className" 
+        name="Fragment Name" 
+        type="string" 
+        constraints="class|nonempty|unique" 
+        default="BlankFragment" 
+        suggest="${underscoreToCamelCase(layoutName?replace('fragment_',''))}Fragment" 
+        help="The name of the fragment class to create" />
+
+    <parameter id="toolbarType"
+        name="Toolbar Type"
+        type="enum"
+        default="appbar"
+        help="The selector to use">
+        <option id="none">None</option>
+        <option id="appbar">AppBarLayout</option>
+    </parameter>
+
+    <parameter id="useTabLayout" 
+        name="Add Tab Layout" 
+        type="boolean" 
+        default="true" 
+        help="If true, a Tab Layout will be added."/>
+
+    <parameter id="layoutName" 
+        name="Fragment Layout Name" 
+        type="string" 
+        constraints="layout|nonempty|unique" 
+        default="fragment_blank" 
+        suggest="fragment_${classToResource(className?replace('Fragment',''))}" 
+        help="The name of the layout to create" />
+
+    <parameter id="adapterName"
+        name="Adapter Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="NewAdapter"
+        suggest="${className?replace('Fragment','Adapter')}"
+        help="The ViewPager Adapter Name" />        
+
+    <parameter id="useVm" 
+        name="Create ViewModel" 
+        type="boolean" 
+        default="true" 
+        help="If true, a ViewModel will be created"/>
+
+    <parameter id="canNavigate" 
+        name="Can navigate" 
+        type="boolean" 
+        default="false" 
+        visibility="useVm" 
+        help="If true, default navigation handler will be added"/>
+
+    <parameter id="viewModelName" 
+        name="ViewModel Name" 
+        type="string" 
+        constraints="class|nonempty|unique" 
+        default="BlankViewModel" 
+        visibility="useVm" 
+        suggest="${className?replace('Fragment','ViewModel')}" 
+        help="The name of the ViewModel class to create" />
+
+    <parameter id="useDataProvider"
+        name="Create Data Provider"
+        type="boolean"
+        default="false"
+        visibility="useVm"
+        help="If true, a View Data Provider will be created"/>
+
+    <parameter id="dataProviderName" 
+        name="Data Provider Name"  
+        type="string" 
+        constraints="class|nonempty|unique" 
+        default="NewDataProvider" 
+        visibility="useDataProvider" 
+        suggest="${className?replace('Fragment','DataProvider')}" 
+        help="The name of the Data Provider class to create" />
+
+    <thumbs>
+        <thumb>template_viewpager.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

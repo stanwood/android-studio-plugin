@@ -1,7 +1,7 @@
-package ${escapeKotlinIdentifiers(packageName)}.ui
+package ${kotlinEscapedPackageName}.ui
 
 import android.os.Bundle
-import ${superClassFqcn}
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -13,7 +13,7 @@ import ${applicationPackage}.R
 </#if>
 
 
-class ${activityClass} : ${superClass}(), HasSupportFragmentInjector {
+class ${activityClass} : AppCompatActivity(), HasSupportFragmentInjector {
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Fragment>

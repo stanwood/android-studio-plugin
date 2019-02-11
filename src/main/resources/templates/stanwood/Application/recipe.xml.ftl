@@ -2,7 +2,8 @@
 <#import "root://activities/common/kotlin_macros.ftl" as kt>
 <recipe>
     <@kt.addAllKotlinDependencies />
-    <dependency mavenUrl="com.google.android.material:material:+" />
+    <dependency mavenUrl="com.google.android.material:material:${versionMaterial}" />
+    <dependency mavenUrl="com.jakewharton.timber:timber:${versionTimber}" />
     <apply plugin="kotlin-kapt" />
     <merge from="root/root.gradle.ftl"
            to="${escapeXmlAttribute(projectLocation)}/build.gradle" />
@@ -27,6 +28,6 @@
     <instantiate from="root/src/app_package/glide/GlideModule.kt.ftl"
                  to="${escapeXmlAttribute(srcOut)}/glide/${className}GlideModule.kt" />
     <instantiate from="root/src/app_package/glide/ImageViewBindingAdapters.kt.ftl"
-                 to="${escapeXmlAttribute(srcOut)}/glide/ImageViewBindingAdapters.kt" />				 
+                 to="${escapeXmlAttribute(srcOut)}/glide/ImageViewBindingAdapters.kt" />
 </#if>
 </recipe>

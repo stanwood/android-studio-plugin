@@ -1,8 +1,8 @@
-package ${escapeKotlinIdentifiers(packageName)}.di
+package ${kotlinEscapedPackageName}.di
 
 import dagger.Module
 
 @Module
 abstract class ActivityBuilderModule {
-    // TODO : Provide your (Main)Activity here
+    // TODO : Provide your Activity here
 }

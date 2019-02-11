@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<template format="5" 
+    revision="1" 
+    name="Network Module" 
+    description="Add network and persistence capabilities">
+
+    <category value="Stanwood" />
+    <parameter id="apiName" 
+        name="Api Name" 
+        type="string" 
+        constraints="nonempty" 
+        default="GitHub" />
+
+    <parameter id="modelClassName" 
+        name="Model Name" 
+        type="string" 
+        constraints="unique|class|nonempty" 
+        default="User" />
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

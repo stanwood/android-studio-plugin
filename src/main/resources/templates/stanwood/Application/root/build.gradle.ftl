@@ -20,7 +20,7 @@ android {
 dependencies {
     kapt 'com.google.dagger:dagger-compiler:${versionDagger}'
     kapt 'com.google.dagger:dagger-android-processor:${versionDagger}'
-    implementation 'com.github.stanwood:framework-arch-android:${versionFramework}'
+    implementation 'com.github.stanwood.framework-arch-android:di:${versionArchFramework}'
 <#if useGlide>	
 	implementation "com.github.bumptech.glide:glide:${versionGlide}"
     kapt "com.github.bumptech.glide:compiler:${versionGlide}"

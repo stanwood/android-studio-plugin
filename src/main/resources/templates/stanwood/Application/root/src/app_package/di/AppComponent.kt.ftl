@@ -1,10 +1,10 @@
-package ${escapeKotlinIdentifiers(packageName)}.di
+package ${kotlinEscapedPackageName}.di
 
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
-import ${escapeKotlinIdentifiers(packageName)}.${className}
+import ${kotlinEscapedPackageName}.${className}
 import javax.inject.Singleton
 
 @Singleton
