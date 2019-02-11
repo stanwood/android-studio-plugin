@@ -1,7 +1,7 @@
 <globals>
-    <global id="versionArchFramework" value="1a9b6da5793afe707033a50b9de170b22fe51923" />
-    <global id="versionNetworkFramework" value="754f3293424e35dac5465f65a04ec971340b19cc" />
-    <global id="versionCoreFramework" value="9838fb5ec24dbb98a816e0d0c1a191203bdcfd22" />
+    <global id="versionArchFramework" value="0.3.0" />
+    <global id="versionNetworkFramework" value="1.5.0" />
+    <global id="versionCoreFramework" value="0.2" />
     <global id="versionDagger" value="2.21" />
     <global id="versionGlide" value="4.8.0" />
     <global id="versionAppCompat" value="1.+" />
