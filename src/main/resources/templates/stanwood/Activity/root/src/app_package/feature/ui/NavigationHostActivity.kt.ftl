@@ -1,9 +1,11 @@
-package ${escapeKotlinIdentifiers(packageName)}.ui
+package ${kotlinEscapedPackageName}.ui
 
 import android.os.Bundle
-import ${superClassFqcn}
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -14,7 +16,7 @@ import ${applicationPackage}.R
 </#if>
 
 
-class ${activityClass} : ${superClass}(), HasSupportFragmentInjector {
+class ${activityClass} : AppCompatActivity(), HasSupportFragmentInjector {
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Fragment>

@@ -2,38 +2,32 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<#if createItemViewModel>
+<#if createItemViewModel!false>
     <data>
 
         <variable
             name="vm"
             type="${packageName}<#if itemCreatePackage!false>.vm</#if>.${itemViewModelName}" />
-			
+
         <variable
             name="imageUrl"
-            type="java.lang.String"/>			
+            type="java.lang.String"/>
     </data>
 </#if>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<#if itemSelectorType == 'default'>        
+<#if isClickableItem!false>
         android:background="?android:selectableItemBackground"
-</#if>        
-        android:padding="@dimen/list_item_padding"
-<#if isDisableable>
-        app:enabled="@{vm.enabled}"
 </#if>
-<#if isSelectable>
-        app:selected="@{vm.selected}"
-</#if>>
+        android:padding="@dimen/list_item_padding">
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="@dimen/list_item_padding"
-<#if createItemViewModel>
+<#if createItemViewModel!false>
             android:src="@{imageUrl}"
 </#if>
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +41,7 @@
             style="@style/SingleLineText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-<#if createItemViewModel>
+<#if createItemViewModel!false>
             android:text="@{vm.title}"
 </#if>
             android:textAppearance="@style/TextAppearance.App.Title"
@@ -61,7 +55,7 @@
             android:id="@+id/subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-<#if createItemViewModel>
+<#if createItemViewModel!false>
             android:text="@{vm.subtitle}"
 </#if>
             android:textAppearance="@style/TextAppearance.App.Subtitle"

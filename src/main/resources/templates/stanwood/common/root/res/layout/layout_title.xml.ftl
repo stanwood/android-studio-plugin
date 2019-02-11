@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-<#if createItemViewModel>
+<#if createItemViewModel!false>
     <data>
 
         <variable
@@ -14,18 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/list_item_padding"
-<#if itemSelectorType == 'default'>
+<#if isClickableItem!false>
         android:background="?android:selectableItemBackground"
 </#if>
-<#if createItemViewModel>
+<#if createItemViewModel!false>
         android:text="@{vm.title}"
 </#if>
         android:textAppearance="@style/TextAppearance.App.Title"
-<#if isDisableable>
-        app:enabled="@{vm.enabled}"
-</#if>
-<#if isSelectable>
-        app:selected="@{vm.selected}"
-</#if>
         tools:text="Title" />
 </layout>

@@ -1,28 +1,26 @@
-package ${escapeKotlinIdentifiers(packageName)}.di
+package ${kotlinEscapedPackageName}.di
 
 import dagger.Module
-<#if useLoader>	
+<#if useDataProvider>	
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import dagger.Provides
-import io.stanwood.framework.arch.di.factory.ViewModelFactory
+import io.stanwood.framework.arch.di.factory.ViewDataProviderFactory
 import io.stanwood.framework.arch.di.scope.ActivityScope
-import ${escapeKotlinIdentifiers(packageName)}.loader.${loaderName}
-import ${escapeKotlinIdentifiers(packageName)}.loader.${loaderName}Impl
+import ${kotlinEscapedPackageName}.dataprovider.${dataProviderName}
+import ${kotlinEscapedPackageName}.dataprovider.${dataProviderName}Impl
 </#if>
 
 @Module
 class ${activityClass}SubModule {
-
-    // provide activity stuff with @ActivityScope here
 	
-	<#if useLoader>	
+<#if useDataProvider>	
     @Provides
     @ActivityScope
-    internal fun provide${loaderName}(
+    internal fun provide${dataProviderName}(
         activity: AppCompatActivity,
-        viewModelFactory: ViewModelFactory<${loaderName}Impl>
-    ): ${loaderName} =
-        ViewModelProviders.of(activity, viewModelFactory).get(${loaderName}Impl::class.java)
+        dataProviderFactory: ViewDataProviderFactory<${dataProviderName}Impl>
+    ): ${dataProviderName} =
+        ViewModelProviders.of(activity, dataProviderFactory).get(${dataProviderName}Impl::class.java)
 </#if>
 }

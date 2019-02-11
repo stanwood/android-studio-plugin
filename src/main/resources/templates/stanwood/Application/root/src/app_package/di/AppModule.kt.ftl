@@ -1,4 +1,4 @@
-package ${escapeKotlinIdentifiers(packageName)}.di
+package ${kotlinEscapedPackageName}.di
 
 import dagger.Module
 

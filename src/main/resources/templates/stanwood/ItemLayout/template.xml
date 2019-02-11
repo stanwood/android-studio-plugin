@@ -1,84 +1,59 @@
 <?xml version="1.0"?>
-<template
-    format="5"
-    revision="1"
-    name="Layout"
-    minApi="9"
-    minBuildApi="14"
+<template format="5" 
+    revision="1" 
+    name="Layout" 
+    minApi="21" 
+    minBuildApi="21" 
     description="Creates a new layout">
 
     <category value="Stanwood"/>
-   
-    <parameter
-        id="itemLayoutType"
-        name="Layout Type"
-        type="enum"
-        default="simple"
+
+    <parameter id="itemLayoutType" 
+        name="Layout Type" 
+        type="enum" 
+        default="simple" 
         help="The selector to use">
         <option id="simple">Simple</option>
         <option id="hor">Horizontal</option>
         <option id="ver">Vertical</option>
     </parameter>
-        
-    <parameter
-        id="itemSelectorType"
-        name="Selector Type"
-        type="enum"
-        default="none"
-        help="The selector to use">
-        <option id="none">None</option>
-        <option id="default">Default</option>
-    </parameter>
-    
-    <parameter
-        id="itemLayoutName"
-        name="Layout Name"
-        type="string"
-        constraints="layout|unique|nonempty"
-        suggest="layout_${classToResource(itemViewModelName?replace('ViewModel',''))}"
-        default="layout_item"
+
+    <parameter id="isClickableItem"
+        name="Clickable"
+        type="boolean"
+        default="false"
+        help="If true, the default item selector will be set."/>
+
+    <parameter id="itemLayoutName" 
+        name="Layout Name" 
+        type="string" 
+        constraints="layout|unique|nonempty" 
+        suggest="layout_${classToResource(itemViewModelName?replace('ViewModel',''))}" 
+        default="layout_item" 
         help="The name of the layout"/>
 
-    <parameter
-        id="createItemViewModel"
-        name="Create ViewModel"
-        type="boolean"
-        default="false"
+    <parameter id="createItemViewModel" 
+        name="Create ViewModel" 
+        type="boolean" 
+        default="false" 
         help="If true, a viewmodel will be created and bound to the layout"/>
 
-    <parameter
-        id="isDisableable"
-        name="Disableable"
-        type="boolean"
-        default="false"
-        visibility="createItemViewModel"
-        help="If true, a property will be bound"/>
-
-    <parameter
-        id="isSelectable"
-        name="Selectable"
-        type="boolean"
-        default="false"
-        visibility="createItemViewModel"
-        help="If true, a property will be bound"/>
-
-    <parameter
-        id="itemViewModelName"
-        name="ViewModel Name"
-        type="string"
-        constraints="class|nonempty|unique"
-        default="ItemViewModel"
-        visibility="createItemViewModel"
-        suggest="${underscoreToCamelCase(itemLayoutName?replace('layout_',''))}ViewModel"
+    <parameter id="itemViewModelName" 
+        name="ViewModel Name" 
+        type="string" 
+        constraints="class|nonempty|unique" 
+        default="ItemViewModel" 
+        visibility="createItemViewModel" 
+        suggest="${underscoreToCamelCase(itemLayoutName?replace('layout_',''))}ViewModel" 
         help="The name of ViewModel to create" />
-    
+
     <thumbs>
         <thumb>template_default.png</thumb>
         <thumb itemLayoutType="simple">template_simple_layout.png</thumb>
         <thumb itemLayoutType="hor">template_hor_layout.png</thumb>
         <thumb itemLayoutType="ver">template_ver_layout.png</thumb>
     </thumbs>
-    
+
     <globals file="globals.xml.ftl"/>
     <execute file="recipe.xml.ftl"/>
 

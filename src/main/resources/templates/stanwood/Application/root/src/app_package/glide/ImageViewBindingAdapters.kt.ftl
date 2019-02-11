@@ -1,4 +1,4 @@
-package ${escapeKotlinIdentifiers(packageName)}.glide
+package ${kotlinEscapedPackageName}.glide
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView

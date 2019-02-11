@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<template format="5"
+    revision="1"
+    name="Fragment (Bottom Navigation)"
+    description="Create a Bottom Navigation Fragment"
+    minApi="21"
+    minBuildApi="21">
+
+    <category value="Stanwood" />
+
+    <parameter id="className"
+        name="Fragment Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="BlankFragment"
+        suggest="${underscoreToCamelCase(layoutName?replace('fragment_',''))}Fragment"
+        help="The name of the fragment class to create" />
+
+    <parameter id="layoutName"
+        name="Fragment Layout Name"
+        type="string"
+        constraints="layout|nonempty|unique"
+        default="fragment_blank"
+        suggest="fragment_${classToResource(className?replace('Fragment',''))}"
+        help="The name of the layout to create" />
+
+    <parameter id="navGraphName"
+        name="Navigation Graph Name"
+        type="string"
+        constraints="nonempty"
+        suggest="nav_graph_${classToResource(className?replace('Fragment',''))}"
+        default="nav_graph_new_feature"
+        help="The name of the navigation graph used by navigation host fragment"/>
+
+    <parameter id="menuName"
+        name="Menu Resource Name"
+        type="string"
+        constraints="layout|nonempty|unique"
+        default="menu_blank"
+        suggest="menu_${classToResource(className?replace('Fragment','_navigation'))}"
+        help="The name of the menu resource to create" />
+
+    <parameter id="useVm"
+        name="Create ViewModel"
+        type="boolean"
+        default="true"
+        help="If true, a ViewModel will be created"/>
+
+    <parameter id="viewModelName"
+        name="ViewModel Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="BlankViewModel"
+        visibility="useVm"
+        suggest="${className?replace('Fragment','ViewModel')}"
+        help="The name of the ViewModel class to create" />
+
+    <parameter id="useDataProvider"
+        name="Create Data Provider"
+        type="boolean"
+        default="false"
+        visibility="useVm"
+        help="If true, a View Data Provider will be created"/>
+
+    <parameter id="dataProviderName"
+        name="Data Provider Name" 
+        type="string"
+        constraints="class|nonempty|unique"
+        default="NewDataProvider"
+        visibility="useDataProvider"
+        suggest="${className?replace('Fragment','DataProvider')}"
+        help="The name of the Data Provider class to create" />
+
+    <thumbs>
+        <thumb>template_fragment_bottom_nav.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

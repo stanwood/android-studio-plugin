@@ -18,7 +18,7 @@
     </item>
     <item>
         <selector>
-<#if useDisabledColor>		
+<#if useDisabledColor>
             <item android:state_enabled="false">
                 <shape
                     android:shape="${shapeType}">

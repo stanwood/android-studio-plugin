@@ -7,4 +7,4 @@
 		android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="${packageName}.ui.${activityClass}"/>    
+        tools:context="${packageName}.ui.${activityClass}"/>
