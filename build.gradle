@@ -40,9 +40,8 @@ intellij {
 }
 
 patchPluginXml {
-    changeNotes """
-      Initial Release"""
+    changeNotes """Store new templates in Android plugin templates folder instead of .android/templates to be able to access all Android plugin provided templates"""
     sinceBuild '181'
     untilBuild '182.*'
-    version '0.9.1'
+    version '0.9.3'
 }

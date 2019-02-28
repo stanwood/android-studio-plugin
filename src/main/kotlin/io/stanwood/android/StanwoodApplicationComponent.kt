@@ -1,7 +1,6 @@
 package io.stanwood.android
 
-import com.android.SdkConstants
-import com.android.prefs.AndroidLocation
+import com.android.tools.idea.templates.TemplateManager
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.ApplicationComponent
@@ -33,8 +32,8 @@ class StanwoodApplicationComponent : ApplicationComponent, Disposable {
         isDynamicTemplateMenuCreated = true
 
         // write templates to user config folder (~/.android/templates)
-        AndroidLocation.getFolder()?.let { userAndroidConfigFolder ->
-            File(File(userAndroidConfigFolder, SdkConstants.FD_TEMPLATES), "stanwood")
+        TemplateManager.getTemplateRootFolder()?.let { studioTemplateFolder ->
+            File(studioTemplateFolder, "stanwood")
                 .apply {
                     mkdirs()
                     FileUtils.cleanDirectory(this)
