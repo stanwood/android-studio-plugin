@@ -31,9 +31,7 @@ compileTestKotlin {
 }
 
 intellij {
-//    version '2018.1.6'
-    localPath '/Applications/Android Studio 3.3.app'
-//    alternativeIdePath '/Applications/Android Studio 3.3.app'
+//    localPath '/Applications/Android Studio 3.3.app' // uncomment when building running locally
     type 'AI'
     updateSinceUntilBuild true
     
