@@ -40,8 +40,13 @@ intellij {
 }
 
 patchPluginXml {
-    changeNotes """Store new templates in Android plugin templates folder instead of .android/templates to be able to access all Android plugin provided templates"""
+    changeNotes """First automated release, identical to 0.9.3"""
     sinceBuild '181'
     untilBuild '182.*'
-    version '0.9.3'
+    version '0.9.4'
+}
+
+publishPlugin {
+    username System.getenv("JETBRAINS_USER")
+    password System.getenv("JETBRAINS_PW")
 }
