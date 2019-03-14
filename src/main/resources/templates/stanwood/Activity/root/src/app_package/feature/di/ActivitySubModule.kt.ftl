@@ -12,11 +12,12 @@ import ${kotlinEscapedPackageName}.dataprovider.${dataProviderName}Impl
 </#if>
 
 @Module
-class ${activityClass}SubModule {
+object ${activityClass}SubModule {
 	
 <#if useDataProvider>	
     @Provides
     @ActivityScope
+    @JvmStatic
     internal fun provide${dataProviderName}(
         activity: AppCompatActivity,
         dataProviderFactory: ViewDataProviderFactory<${dataProviderName}Impl>

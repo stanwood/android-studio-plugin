@@ -1,3 +1,6 @@
+buildscript {
+     ext.buildNumber = System.getenv("BITRISE_BUILD_NUMBER") ?: "dev"
+}
 allprojects {
     repositories {
         google()

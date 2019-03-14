@@ -27,7 +27,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 <#if useVm>
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory<${viewModelName}>
-    private var viewModel: ${viewModelName}? = null
+    private lateinit var viewModel: ${viewModelName}
 </#if>
     @Inject
     internal lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
@@ -60,10 +60,10 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     <#if useVm>
     binding?.setNavSelectedListener { menuItem ->
         binding?.bottomNav?.selectedItemId?.let {
-            viewModel?.selectMenuItem(menuItem.itemId, it)
+            viewModel.selectMenuItem(menuItem.itemId, it)
         } ?: false
     }    
-    viewModel?.apply {
+    viewModel.apply {
             navigator.subscribeBy(viewLifecycleOwner, onNext = {
                 childNavController?.navigate(it.navDirections, it.navOptions)
             })
@@ -74,7 +74,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        viewModel?.destroy()
+        viewModel.destroy()
     }
 </#if>
 }

@@ -29,7 +29,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 <#if useVm>
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory<${viewModelName}>
-    private var viewModel: ${viewModelName}? = null
+    private lateinit var viewModel: ${viewModelName}
 </#if>
     @Inject
     internal lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
@@ -69,7 +69,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
         }
     rcvAdapter = ${adapterName}(LayoutInflater.from(context)<#if useGlide>, dataBindingComponent</#if>)<#if isClickableItem> { <#if useVm>viewModel?.itemClicked(it)<#else>/*TODO: Add click handling*/</#if> } </#if>
     <#if useVm>
-        viewModel?.apply {
+        viewModel.apply {
         <#if useDataProvider!false>            
                 items.subscribeBy(viewLifecycleOwner, onNext = {
                     binding?.rcv?.apply {
@@ -92,7 +92,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        viewModel?.destroy()
+        viewModel.destroy()
     }
 </#if>
 }

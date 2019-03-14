@@ -7,8 +7,6 @@ import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.impl.MemoryPolicy
 import com.nytimes.android.external.store3.base.impl.StoreBuilder
 import io.reactivex.Single
-import io.stanwood.framework.arch.core.Resource
-import io.stanwood.framework.arch.core.rx.ResourceTransformer
 import io.stanwood.framework.network.store.SerializationParserFactory
 import ${kotlinEscapedPackageName}.datasource.net.${apiFolderName}.${apiClassName}
 import ${kotlinEscapedPackageName}.datasource.net.${apiFolderName}.${apiModelClassName}
@@ -33,10 +31,9 @@ class ${repositoryClassName} @Inject constructor(private val api: ${apiClassName
             .open()
     }
 
-    fun fetch${modelClassName}(): Single<Resource<List<${modelClassName}>>> =
+    fun fetch${modelClassName}(): Single<List<${modelClassName}>> =
         sampleStore.get(all${modelClassName})
-            .compose(ResourceTransformer.fromSingle({ src -> src.map { it.mapToDomain() } }))
-
+            .map { src -> src.map { it.mapToDomain() } }
 
     private fun <T> Parser<BufferedSource, T>.fetchFrom(fetcher: (BarCode) -> Single<BufferedSource>) =
         StoreBuilder.parsedWithKey<BarCode, BufferedSource, T>()

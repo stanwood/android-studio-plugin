@@ -16,17 +16,20 @@ import ${kotlinEscapedAppPackageName}.glide.ImageViewBindingAdapters
 import androidx.databinding.DataBindingComponent
 </#if>
 @Module
-class ${className}SubModule {
+object ${className}SubModule {
 <#if useGlide!false>
     @Provides
+    @JvmStatic
     internal fun provideGlideAppFragmentFactory(fragment: ${className}): GlideAppFactory =
         GlideAppFragmentFactory(fragment)
 
     @Provides
+    @JvmStatic
     internal fun provideImageViewBindingAdapters(glideAppFactory: GlideAppFactory): ImageViewBindingAdapters =
         ImageViewBindingAdapters(glideAppFactory)
 
     @Provides
+    @JvmStatic
     internal fun provideGlideDataBindingComponent(imageViewBindingAdapters: ImageViewBindingAdapters): DataBindingComponent =
      object : DataBindingComponent {
         override fun getImageViewBindingAdapters(): ImageViewBindingAdapters =
@@ -36,6 +39,7 @@ class ${className}SubModule {
 <#if useDataProvider!true>
 
     @Provides
+    @JvmStatic
     internal fun provide${dataProviderName}(
         fragment: ${className},
         dataProviderFactory: ViewDataProviderFactory<${dataProviderName}Impl>
