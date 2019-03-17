@@ -21,12 +21,13 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+object NetworkModule {
 
     // TODO: Add this Module to your Dagger Application component
 
     @Provides
     @Singleton
+    @JvmStatic
     internal fun provideHttpClient(context: Application) =
         OkHttpClient.Builder().apply {
             addInterceptor(ConnectivityInterceptor(context))
@@ -44,6 +45,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
+    @JvmStatic
     internal fun provideRetrofit(httpClient: OkHttpClient) =
         Retrofit.Builder().client(httpClient).baseUrl("https://api.github.com/") // TODO: Change base Url
             .addConverterFactory(BufferedSourceConverterFactory.create())
@@ -52,10 +54,12 @@ class NetworkModule {
 
     @Singleton
     @Provides
+    @JvmStatic
     internal fun provide${apiClassName}(retrofit: Retrofit) = retrofit.create(${apiClassName}::class.java)
 
     @Provides
     @Singleton
+    @JvmStatic
     fun provideFileSystem(context: Application): FileSystem =
         try {
             FileSystemFactory.create(File(context.noBackupFilesDir, "store"))

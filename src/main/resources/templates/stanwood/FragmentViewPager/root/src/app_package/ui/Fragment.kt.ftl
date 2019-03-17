@@ -25,7 +25,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 <#if useVm>
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory<${viewModelName}>
-    private var viewModel: ${viewModelName}? = null
+    private lateinit var viewModel: ${viewModelName}
 </#if>
     @Inject
     internal lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
@@ -61,7 +61,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 </#if>
         }    
     <#if canNavigate>
-    viewModel?.apply {
+    viewModel.apply {
             navigator.subscribeBy(viewLifecycleOwner, onSuccess = { findNavController().navigate(it.navDirections, it.navOptions) })
             }
     </#if>
@@ -69,7 +69,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 <#if useVm>
     override fun onDestroyView() {
         super.onDestroyView()
-        viewModel?.destroy()
+        viewModel.destroy()
     }
 </#if>
 }
