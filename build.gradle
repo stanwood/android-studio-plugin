@@ -31,7 +31,7 @@ compileTestKotlin {
 }
 
 intellij {
-//    localPath '/Applications/Android Studio 3.3.app' // uncomment when building running locally
+//    localPath '/Applications/Android Studio 3.4.app' // uncomment when building running locally
     type 'AI'
     updateSinceUntilBuild true
     
@@ -40,8 +40,8 @@ intellij {
 patchPluginXml {
     changeNotes """First automated release, identical to 0.9.3"""
     sinceBuild '181'
-    untilBuild '182.*'
-    version '0.9.4'
+    untilBuild '183.*'
+    version '0.9.5'
 }
 
 publishPlugin {
