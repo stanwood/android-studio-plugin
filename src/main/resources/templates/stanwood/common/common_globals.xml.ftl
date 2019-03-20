@@ -8,6 +8,7 @@
     <global id="versionMaterial" value="1.+" />
     <global id="versionConstraintLayout" value="1.+" />
     <global id="versionRetrofit" value="2.5.0" />
+    <global id="versionRxJava" value="2.5.0" />
     <global id="versionDebugApp" value="0.2" />
     <global id="versionTimber" value="4.7.1" />
     <global id="versionSerialization" value="0.10.0" />
