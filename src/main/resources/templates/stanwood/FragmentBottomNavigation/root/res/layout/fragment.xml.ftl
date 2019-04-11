@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="navSelectedListener"
-            type="com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener"/>
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:setOnNavigationItemSelectedListener="@{navSelectedListener}"
             app:menu="@menu/${menuName}" />
     </LinearLayout>
 </layout>

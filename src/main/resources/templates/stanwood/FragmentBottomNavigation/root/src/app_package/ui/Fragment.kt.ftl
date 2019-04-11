@@ -52,17 +52,15 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
         .apply {
             binding = this
             root.setApplyWindowInsetsToChild()
+            childNavController?.let {
+                bottomNav.setupWithNavController(it)
+            }
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     view.requestApplyInsets()
     binding?.lifecycleOwner = viewLifecycleOwner
     <#if useVm>
-    binding?.setNavSelectedListener { menuItem ->
-        binding?.bottomNav?.selectedItemId?.let {
-            viewModel.selectMenuItem(menuItem.itemId, it)
-        } ?: false
-    }    
     viewModel.apply {
             navigator.subscribeBy(viewLifecycleOwner, onNext = {
                 childNavController?.navigate(it.navDirections, it.navOptions)
