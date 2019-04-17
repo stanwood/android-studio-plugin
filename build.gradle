@@ -31,7 +31,7 @@ compileTestKotlin {
 }
 
 intellij {
-    localPath '/Applications/Android Studio 3.4.app' // uncomment when building and running locally
+//    localPath '/Applications/Android Studio 3.4.app' // uncomment when building and running locally
     type 'AI'
     updateSinceUntilBuild true
     
