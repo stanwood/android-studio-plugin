@@ -38,11 +38,11 @@ intellij {
 }
 
 patchPluginXml {
-    changeNotes """- match the latest changes in framework-arch-android
-- update to 183.* based IntelliJ builds like AS 3.4"""
+    changeNotes """- update to framework-arch-android:0.6.0
+- add support for manual back and up navigation"""
     sinceBuild '181'
     untilBuild '183.*'
-    version '0.9.5'
+    version '0.9.6'
 }
 
 publishPlugin {

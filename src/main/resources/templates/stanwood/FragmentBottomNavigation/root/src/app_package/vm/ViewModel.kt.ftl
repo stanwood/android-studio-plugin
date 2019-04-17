@@ -6,6 +6,7 @@ import  ${kotlinEscapedPackageName}.dataprovider.${dataProviderName}
 import androidx.annotation.IdRes
 import io.stanwood.framework.arch.core.ViewModel
 import io.reactivex.subjects.PublishSubject
+import io.stanwood.framework.arch.nav.Direction
 import io.stanwood.framework.arch.nav.NavigationTarget
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -28,7 +29,7 @@ class ${viewModelName} @Inject constructor(<#if useDataProvider!false>private va
             else -> null
         }
             ?.let {
-                navigation.onNext(NavigationTarget(it))
+                navigation.onNext(Direction(it))
                 true
             }
             ?: false

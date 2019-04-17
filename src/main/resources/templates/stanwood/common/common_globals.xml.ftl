@@ -1,5 +1,5 @@
 <globals>
-    <global id="versionArchFramework" value="0.4.0" />
+    <global id="versionArchFramework" value="0.6.0" />
     <global id="versionNetworkFramework" value="1.5.0" />
     <global id="versionCoreFramework" value="0.3" />
     <global id="versionDagger" value="2.21" />

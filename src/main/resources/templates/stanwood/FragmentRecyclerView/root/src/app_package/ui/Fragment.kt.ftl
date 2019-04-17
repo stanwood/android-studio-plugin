@@ -20,6 +20,9 @@ import io.stanwood.framework.arch.core.rx.subscribeBy
 </#if>
 <#if canNavigate>
 import androidx.navigation.fragment.findNavController
+import io.stanwood.framework.arch.nav.Back
+import io.stanwood.framework.arch.nav.Direction
+import io.stanwood.framework.arch.nav.Up
 </#if>
 import androidx.recyclerview.widget.LinearLayoutManager
 import javax.inject.Inject
@@ -83,7 +86,13 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
                 })
         </#if>                
         <#if canNavigate>
-                navigator.subscribeBy(viewLifecycleOwner, onSuccess = { findNavController().navigate(it.navDirections, it.navOptions) })
+                navigator.subscribeBy(viewLifecycleOwner, onSuccess = {
+                    when (it) {
+                        is Direction -> childNavController?.navigate(it.navDirections, it.navOptions)
+                        is Back -> childNavController?.popBackStack()
+                        is Up -> childNavController?.navigateUp()
+                    }
+                })
         </#if>
             }
     </#if>

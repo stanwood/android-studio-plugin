@@ -16,6 +16,9 @@ import io.stanwood.framework.arch.di.factory.ViewModelFactory
 import ${kotlinEscapedPackageName}.vm.${viewModelName}
 import androidx.navigation.fragment.findNavController
 import io.stanwood.framework.arch.core.rx.subscribeBy
+import io.stanwood.framework.arch.nav.Back
+import io.stanwood.framework.arch.nav.Direction
+import io.stanwood.framework.arch.nav.Up
 </#if>
 import javax.inject.Inject
 <#if applicationPackage??>
@@ -65,7 +68,11 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     }    
     viewModel.apply {
             navigator.subscribeBy(viewLifecycleOwner, onNext = {
-                childNavController?.navigate(it.navDirections, it.navOptions)
+                when (it) {
+                    is Direction -> childNavController?.navigate(it.navDirections, it.navOptions)
+                    is Back -> childNavController?.popBackStack()
+                    is Up -> childNavController?.navigateUp()
+                }
             })
         }
     </#if>
