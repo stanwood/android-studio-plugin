@@ -83,7 +83,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
                 })
         </#if>                
         <#if canNavigate>
-                navigator.subscribeBy(viewLifecycleOwner, onSuccess = { findNavController().navigate(it.navDirections, it.navOptions) })
+                navigator.subscribeBy(viewLifecycleOwner, onSuccess = { it.navigate(findNavController()) })
         </#if>
             }
     </#if>

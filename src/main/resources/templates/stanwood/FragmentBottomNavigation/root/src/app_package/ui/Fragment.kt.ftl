@@ -65,7 +65,9 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     }    
     viewModel.apply {
             navigator.subscribeBy(viewLifecycleOwner, onNext = {
-                childNavController?.navigate(it.navDirections, it.navOptions)
+                childNavController?.let { navController ->
+                    it.navigate(navController)
+                }
             })
         }
     </#if>
