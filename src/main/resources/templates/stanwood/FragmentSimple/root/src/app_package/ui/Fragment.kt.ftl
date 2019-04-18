@@ -55,13 +55,13 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    view.requestApplyInsets()
-    binding?.lifecycleOwner = viewLifecycleOwner
-    <#if canNavigate>
-    viewModel.apply {
-            navigator.subscribeBy(viewLifecycleOwner, onSuccess = { findNavController().navigate(it.navDirections, it.navOptions) })
-            }
-    </#if>
+        view.requestApplyInsets()
+        binding?.lifecycleOwner = viewLifecycleOwner
+        <#if canNavigate>
+        viewModel.apply {
+            navigator.subscribeBy(viewLifecycleOwner, onSuccess = { it.navigate(findNavController()) })
+        }
+        </#if>
     }
 <#if useVm>
     override fun onDestroyView() {
