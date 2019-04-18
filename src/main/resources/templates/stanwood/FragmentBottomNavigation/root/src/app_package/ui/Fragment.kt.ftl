@@ -16,6 +16,7 @@ import io.stanwood.framework.arch.di.factory.ViewModelFactory
 import ${kotlinEscapedPackageName}.vm.${viewModelName}
 import androidx.navigation.fragment.findNavController
 import io.stanwood.framework.arch.core.rx.subscribeBy
+import io.stanwood.framework.arch.nav.syncWith
 </#if>
 import javax.inject.Inject
 <#if applicationPackage??>
@@ -52,6 +53,9 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
         .apply {
             binding = this
             root.setApplyWindowInsetsToChild()
+            childNavController?.let {
+                binding?.bottomNav?.syncWith(it, lifecycle)
+            }
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
