@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 <#if useGlide>
 import androidx.databinding.DataBindingComponent
+import androidx.databinding.DataBindingUtil
+import ${kotlinEscapedAppPackageName}.R
 </#if>
 import androidx.fragment.app.Fragment
 import dagger.android.DispatchingAndroidInjector
@@ -53,7 +55,11 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     }
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?) =
-         ${bindingClass}.inflate(inflater, container, false<#if useGlide>, dataBindingComponent</#if>)
+    <#if useGlide!false>
+        DataBindingUtil.inflate<${bindingClass}>(inflater, R.layout.${layoutName}, container, false, dataBindingComponent)
+    <#else>
+         ${bindingClass}.inflate(inflater, container, false)
+    </#if>
         .apply {
             binding = this
         }.root

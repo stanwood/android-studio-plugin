@@ -18,9 +18,13 @@ import androidx.navigation.fragment.findNavController
 import io.stanwood.framework.arch.core.rx.subscribeBy
 import io.stanwood.framework.arch.nav.syncWith
 </#if>
+<#if useGlide!false>
+import androidx.databinding.DataBindingComponent
+import androidx.databinding.DataBindingUtil
+</#if>
 import javax.inject.Inject
 <#if applicationPackage??>
-import ${applicationPackage}.R
+import ${kotlinEscapedAppPackageName}.R
 </#if>
 
 class ${className} : Fragment(), HasSupportFragmentInjector {
@@ -32,6 +36,11 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 </#if>
     @Inject
     internal lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
+<#if useGlide!false>
+
+    @Inject
+    internal lateinit var dataBindingComponent: DataBindingComponent
+</#if>
 
     private var binding: ${underscoreToCamelCase(layoutName)}Binding? = null
 
@@ -49,7 +58,11 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     }
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?) =
-         ${bindingClass}.inflate(inflater, container, false<#if useGlide!false>, dataBindingComponent</#if>)
+    <#if useGlide!false>
+        DataBindingUtil.inflate<${bindingClass}>(inflater, R.layout.${layoutName}, container, false, dataBindingComponent)
+    <#else>
+         ${bindingClass}.inflate(inflater, container, false)
+    </#if>
         .apply {
             binding = this
             root.setApplyWindowInsetsToChild()

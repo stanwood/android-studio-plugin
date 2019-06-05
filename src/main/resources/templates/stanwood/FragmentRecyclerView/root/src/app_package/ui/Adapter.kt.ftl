@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 <#if useGlide>
 import androidx.databinding.DataBindingComponent
+import androidx.databinding.DataBindingUtil
+import ${kotlinEscapedAppPackageName}.R
 </#if>
 import io.stanwood.framework.databinding.recyclerview.BindingViewHolder
 import ${kotlinEscapedAppPackageName}.BR
@@ -35,7 +37,11 @@ class ${adapterName}(private val inflater: LayoutInflater<#if useGlide>, private
         }) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        BindingViewHolder(${bindingClass}.inflate(inflater, parent, false<#if useGlide>, dataBindingComponent</#if>)<#if !isClickableItem>)<#else>
+    <#if useGlide!false>
+        BindingViewHolder(DataBindingUtil.inflate<${bindingClass}>(inflater, R.layout.${itemLayoutName}, parent, false, dataBindingComponent)
+    <#else>
+        BindingViewHolder(${bindingClass}.inflate(inflater, container, false)
+    </#if><#if !isClickableItem>)<#else>    
             .apply {
                 root.setOnClickListener {
                     this.vm?.apply { clickCallback.invoke(this) }
