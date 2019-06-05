@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-<#if useGlide>
+<#if useGlide!false>
 import androidx.databinding.DataBindingComponent
+import androidx.databinding.DataBindingUtil
+import ${kotlinEscapedAppPackageName}.R
 </#if>
 import androidx.fragment.app.Fragment
 import dagger.android.DispatchingAndroidInjector
@@ -32,7 +34,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 </#if>
     @Inject
     internal lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
-<#if useGlide>
+<#if useGlide!false>
     @Inject
     internal lateinit var dataBindingComponent: DataBindingComponent
 </#if>
@@ -49,13 +51,16 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     }
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?) =
-         ${bindingClass}.inflate(inflater, container, false<#if useGlide>, dataBindingComponent</#if>)
+    <#if useGlide!false>
+        DataBindingUtil.inflate<${bindingClass}>(inflater, R.layout.${layoutName}, container, false, dataBindingComponent)
+    <#else>
+         ${bindingClass}.inflate(inflater, container, false)
+    </#if>
         .apply {
             binding = this
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        view.requestApplyInsets()
         binding?.lifecycleOwner = viewLifecycleOwner
         <#if canNavigate>
         viewModel.apply {
