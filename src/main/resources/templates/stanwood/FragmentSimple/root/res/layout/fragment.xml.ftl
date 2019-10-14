@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 	android:fitsSystemWindows="true"
-	app:statusBarBackground="@color/colorPrimaryDark">
+	app:statusBarBackground="?colorPrimaryVariant">
 <#include "root://stanwood/common/root/res/layout/layout_toolbar.xml.ftl" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

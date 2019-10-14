@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 interface GlideAppFactory {
-    fun get(): GlideRequests
+    val glideRequests: GlideRequests
 }
 
-class GlideAppFragmentFactory(private val fragment: Fragment) : GlideAppFactory {
-    override fun get() = GlideApp.with(fragment)
+class GlideAppFragmentFactory(fragment: Fragment) : GlideAppFactory {
+    override val glideRequests = GlideApp.with(fragment)
 }
 
-class GlideAppActivityFactory(private val activity: AppCompatActivity) : GlideAppFactory {
-    override fun get() = GlideApp.with(activity)
+class GlideAppActivityFactory(activity: AppCompatActivity) : GlideAppFactory {
+    override val glideRequests = GlideApp.with(activity)
 }

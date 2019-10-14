@@ -11,14 +11,18 @@ import androidx.databinding.DataBindingUtil
 import ${kotlinEscapedAppPackageName}.R
 </#if>
 import androidx.fragment.app.Fragment
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import ${kotlinEscapedAppPackageName}.databinding.${bindingClass}
 <#if useVm>
 import io.stanwood.framework.arch.di.factory.ViewModelFactory
 import ${kotlinEscapedPackageName}.vm.${viewModelName}
 import io.stanwood.framework.arch.core.rx.subscribeBy
+</#if>
+<#if isClickableItem>
+import ${kotlinEscapedPackageName}.vm.${viewModelName}ActionListener
 </#if>
 <#if canNavigate>
 import androidx.navigation.fragment.findNavController
@@ -26,7 +30,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import javax.inject.Inject
 
-class ${className} : Fragment(), HasSupportFragmentInjector {
+class ${className} : Fragment(), HasAndroidInjector {
 
 <#if useVm>
     @Inject
@@ -34,7 +38,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     private lateinit var viewModel: ${viewModelName}
 </#if>
     @Inject
-    internal lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
+    internal lateinit var androidInjector: DispatchingAndroidInjector<Any>
 <#if useGlide>
     @Inject
     internal lateinit var dataBindingComponent: DataBindingComponent
@@ -44,7 +48,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 
     private var rcvAdapter : ${adapterName}? = null
 
-    override fun supportFragmentInjector() = androidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -65,7 +69,6 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    view.requestApplyInsets()
     binding?.apply {
             rcv.apply {
                 setHasFixedSize(true)
@@ -73,7 +76,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
             }
             lifecycleOwner = viewLifecycleOwner
         }
-    rcvAdapter = ${adapterName}(LayoutInflater.from(context)<#if useGlide>, dataBindingComponent</#if>)<#if isClickableItem> { <#if useVm>viewModel?.itemClicked(it)<#else>/*TODO: Add click handling*/</#if> } </#if>
+    rcvAdapter = ${adapterName}(LayoutInflater.from(context)<#if useGlide>, dataBindingComponent</#if><#if isClickableItem> , viewModel</#if>)
     <#if useVm>
         viewModel.apply {
         <#if useDataProvider!false>            
@@ -89,7 +92,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
                 })
         </#if>                
         <#if canNavigate>
-                navigator.subscribeBy(viewLifecycleOwner, onSuccess = { it.navigate(findNavController()) })
+                navigationAction.subscribeBy(viewLifecycleOwner, onSuccess = { it.navigate(findNavController()) })
         </#if>
             }
     </#if>

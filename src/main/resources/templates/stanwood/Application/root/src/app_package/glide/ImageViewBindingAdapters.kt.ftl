@@ -19,7 +19,7 @@ class ImageViewBindingAdapters(private val glideAppFactory: GlideAppFactory) {
         skipCache: Boolean = false
     ) {
         url?.apply {
-            glideAppFactory.get()
+            glideAppFactory.glideRequests
                 .load(this)
                 .fitCenter()
                 .apply {
@@ -28,22 +28,12 @@ class ImageViewBindingAdapters(private val glideAppFactory: GlideAppFactory) {
                     }
                     if (skipCache) {
                         diskCacheStrategy(DiskCacheStrategy.NONE)
-                        skipMemoryCache(true)
+                        .skipMemoryCache(true)
                     }
                     placeholder?.let { placeholder(it) }
                 }
                 .into(imageView)
         }
-            ?: glideAppFactory.get().apply {
-                clear(imageView)
-                load(placeholder)
-                    .fitCenter().apply {
-                        if (circleCrop) {
-                            circleCrop()
-                        }
-                    }
-
-                    .into(imageView)
-            }
+            ?: glideAppFactory.glideRequests.clear(imageView)
     }
 }

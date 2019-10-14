@@ -15,7 +15,7 @@
 	<instantiate from="root/res/navigation/nav_graph.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/navigation/${navGraphName}.xml" />
     <merge from="root/root.gradle.ftl"
-           to="${escapeXmlAttribute(projectLocation)}/build.gradle" />
+           to="${escapeXmlAttribute(topOut)}/build.gradle" />
 <#else>
     <instantiate from="root/res/layout/activity_simple.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/layout/${layoutName}.xml" />
@@ -26,9 +26,6 @@
 
 	<instantiate from="root/src/app_package/feature/di/ActivityModule.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/di/${activityClass}Module.kt" />
-
-	<instantiate from="root/src/app_package/feature/di/ActivitySubModule.kt.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/di/${activityClass}SubModule.kt" />
 
 	<merge from="root/AndroidManifest.xml.ftl"
            to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />

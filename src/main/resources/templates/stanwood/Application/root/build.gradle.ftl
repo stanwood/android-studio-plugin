@@ -31,6 +31,9 @@ android {
         }
         variant.resValue 'string', 'app_name', appName
     }
+    packagingOptions {
+        exclude 'META-INF/core_release.kotlin_module'
+    }    
 }
 dependencies {
     kapt 'com.google.dagger:dagger-compiler:${versionDagger}'

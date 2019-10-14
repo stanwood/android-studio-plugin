@@ -11,9 +11,10 @@ import androidx.databinding.DataBindingUtil
 import ${kotlinEscapedAppPackageName}.R
 </#if>
 import androidx.fragment.app.Fragment
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import ${kotlinEscapedAppPackageName}.databinding.${bindingClass}
 <#if useVm>
 import io.stanwood.framework.arch.di.factory.ViewModelFactory
@@ -25,7 +26,7 @@ import io.stanwood.framework.arch.core.rx.subscribeBy
 </#if>
 import javax.inject.Inject
 
-class ${className} : Fragment(), HasSupportFragmentInjector {
+class ${className} : Fragment(), HasAndroidInjector {
 
 <#if useVm>
     @Inject
@@ -33,14 +34,14 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     private lateinit var viewModel: ${viewModelName}
 </#if>
     @Inject
-    internal lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
+    internal lateinit var androidInjector: DispatchingAndroidInjector<Any>
 <#if useGlide!false>
     @Inject
     internal lateinit var dataBindingComponent: DataBindingComponent
 </#if>
     private var binding: ${underscoreToCamelCase(layoutName)}Binding? = null
 
-    override fun supportFragmentInjector() = androidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -64,7 +65,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
         binding?.lifecycleOwner = viewLifecycleOwner
         <#if canNavigate>
         viewModel.apply {
-            navigator.subscribeBy(viewLifecycleOwner, onSuccess = { it.navigate(findNavController()) })
+            navigationAction.subscribeBy(viewLifecycleOwner, onSuccess = { it.navigate(findNavController()) })
         }
         </#if>
     }
