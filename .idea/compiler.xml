@@ -6,6 +6,8 @@
       <module name="io.stanwood.android.test" target="1.8" />
       <module name="io.stanwood.stanwood-android-plugin.main" target="11" />
       <module name="io.stanwood.stanwood-android-plugin.test" target="11" />
+      <module name="stanwood-android-plugin.main" target="1.8" />
+      <module name="stanwood-android-plugin.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
