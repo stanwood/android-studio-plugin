@@ -30,7 +30,6 @@
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             app:setOnNavigationItemSelectedListener="@{navSelectedListener}"
             app:menu="@menu/${menuName}" />
     </LinearLayout>

@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import ${kotlinEscapedAppPackageName}.databinding.${bindingClass}
 import io.stanwood.framework.ui.extensions.setApplyWindowInsetsToChild
 <#if useVm>
@@ -27,7 +28,7 @@ import javax.inject.Inject
 import ${kotlinEscapedAppPackageName}.R
 </#if>
 
-class ${className} : Fragment(), HasSupportFragmentInjector {
+class ${className} : Fragment(), HasAndroidInjector {
 
 <#if useVm>
     @Inject
@@ -35,7 +36,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
     private lateinit var viewModel: ${viewModelName}
 </#if>
     @Inject
-    internal lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
+    internal lateinit var androidInjector: DispatchingAndroidInjector<Any>
 <#if useGlide!false>
 
     @Inject
@@ -44,7 +45,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
 
     private var binding: ${underscoreToCamelCase(layoutName)}Binding? = null
 
-    override fun supportFragmentInjector() = androidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     private val childNavController
         get() = childFragmentManager.findFragmentById(R.id.nav_host_child_fragment)?.findNavController()
@@ -72,7 +73,6 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    view.requestApplyInsets()
     binding?.lifecycleOwner = viewLifecycleOwner
     <#if useVm>
     binding?.setNavSelectedListener { menuItem ->
@@ -81,7 +81,7 @@ class ${className} : Fragment(), HasSupportFragmentInjector {
         } ?: false
     }    
     viewModel.apply {
-            navigator.subscribeBy(viewLifecycleOwner, onNext = {
+            navigationAction.subscribeBy(viewLifecycleOwner, onNext = {
                 childNavController?.let { navController ->
                     it.navigate(navController)
                 }

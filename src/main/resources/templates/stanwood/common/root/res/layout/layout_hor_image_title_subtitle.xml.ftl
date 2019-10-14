@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 <#if createItemViewModel!false>
     <data>
-
         <variable
             name="vm"
             type="${packageName}<#if itemCreatePackage!false>.vm</#if>.${itemViewModelName}" />
@@ -12,12 +11,22 @@
         <variable
             name="imageUrl"
             type="java.lang.String"/>
+
+    <#if isClickableItem!false>
+        <variable
+           name="actionListener"
+           type="${packageName}<#if itemCreatePackage!false>.vm</#if>.${viewModelName}ActionListener" />
+    </#if>
+
     </data>
 </#if>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 <#if isClickableItem!false>
+        <#if createItemViewModel!false>
+        android:onClick="@{(v)->actionListener.show(vm)}"
+        </#if>
         android:background="?android:selectableItemBackground"
 </#if>
         android:padding="@dimen/list_item_padding">
@@ -44,7 +53,7 @@
 <#if createItemViewModel!false>
             android:text="@{vm.title}"
 </#if>
-            android:textAppearance="@style/TextAppearance.App.Title"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             app:layout_constraintBottom_toTopOf="@id/subtitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image"
@@ -58,7 +67,7 @@
 <#if createItemViewModel!false>
             android:text="@{vm.subtitle}"
 </#if>
-            android:textAppearance="@style/TextAppearance.App.Subtitle"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/title"

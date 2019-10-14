@@ -1,20 +1,19 @@
 package ${kotlinEscapedPackageName}
 
-import android.app.Activity
 import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 import ${kotlinEscapedPackageName}.di.DaggerAppComponent
 import javax.inject.Inject
 import timber.log.Timber
 
-class ${className} : Application(), HasActivityInjector {
+class ${className} : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+    lateinit var activityInjector: DispatchingAndroidInjector<Any>
 
-    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
+    override fun androidInjector(): AndroidInjector<Any> = activityInjector
 
     override fun onCreate() {
         super.onCreate()

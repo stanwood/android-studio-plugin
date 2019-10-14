@@ -15,8 +15,8 @@ import ${applicationPackage}.R
 </#if>
 
 class ${viewModelName} @Inject constructor(<#if useDataProvider!false>private val dataProvider: ${dataProviderName}</#if>) : ViewModel {
-    private val navigation = PublishSubject.create<NavigationTarget>()
-    val navigator: Observable<NavigationTarget> = navigation
+    private val _navigationAction = PublishSubject.create<NavigationTarget>()
+    val navigationAction: Observable<NavigationTarget> = _navigationAction
     
     fun selectMenuItem(@IdRes id: Int, @IdRes currentSelectedId: Int) =
         if (id == currentSelectedId) {
@@ -29,7 +29,7 @@ class ${viewModelName} @Inject constructor(<#if useDataProvider!false>private va
             else -> null
         }
             ?.let {
-                navigation.onNext(Direction(it))
+                _navigationAction.onNext(Direction(it))
                 true
             }
             ?: false

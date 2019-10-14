@@ -14,8 +14,11 @@ import io.stanwood.framework.databinding.recyclerview.BindingViewHolder
 import ${kotlinEscapedAppPackageName}.BR
 import ${kotlinEscapedAppPackageName}.databinding.${bindingClass}
 import ${kotlinEscapedPackageName}.vm.${itemViewModelName}
+<#if isClickableItem>
+import ${kotlinEscapedPackageName}.vm.${viewModelName}ActionListener
+</#if>
 
-class ${adapterName}(private val inflater: LayoutInflater<#if useGlide>, private val dataBindingComponent: DataBindingComponent</#if><#if isClickableItem>, private val clickCallback: ((${itemViewModelName}) -> Unit)</#if>) :
+class ${adapterName}(private val inflater: LayoutInflater<#if useGlide>, private val dataBindingComponent: DataBindingComponent</#if><#if isClickableItem>, private val actionListener: ${viewModelName}ActionListener</#if>) :
     ListAdapter<${itemViewModelName}, BindingViewHolder>(
 	     object : DiffUtil.ItemCallback<${itemViewModelName}>() {
 <#if itemLayoutType == 'simple'>
@@ -41,19 +44,16 @@ class ${adapterName}(private val inflater: LayoutInflater<#if useGlide>, private
         BindingViewHolder(DataBindingUtil.inflate<${bindingClass}>(inflater, R.layout.${itemLayoutName}, parent, false, dataBindingComponent)
     <#else>
         BindingViewHolder(${bindingClass}.inflate(inflater, container, false)
-    </#if><#if !isClickableItem>)<#else>    
-            .apply {
-                root.setOnClickListener {
-                    this.vm?.apply { clickCallback.invoke(this) }
-                }
-            })
-</#if>
+    </#if>)
 
 <#if itemLayoutType == 'simple'>
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
         holder.binding.apply {
             setVariable(BR.vm, getItem(position))
+            <#if isClickableItem>
+            setVariable(BR.actionListener, actionListener)
+            </#if>
             executePendingBindings()
         }
     }
@@ -75,6 +75,9 @@ class ${adapterName}(private val inflater: LayoutInflater<#if useGlide>, private
             getItem(position).also { item ->
                 setVariable(BR.vm, item)
                 setVariable(BR.imageUrl, item.imageUrl)
+            <#if isClickableItem>
+                setVariable(BR.actionListener, actionListener)
+            </#if>
             }
             executePendingBindings()
         }

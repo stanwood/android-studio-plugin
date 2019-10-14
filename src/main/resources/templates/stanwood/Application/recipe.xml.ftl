@@ -10,7 +10,7 @@
     </#if>
     <apply plugin="kotlin-kapt" />
     <merge from="root/root.gradle.ftl"
-           to="${escapeXmlAttribute(projectLocation)}/build.gradle" />
+           to="${escapeXmlAttribute(topOut)}/build.gradle" />
     <merge from="root/AndroidManifest.xml.ftl"
              to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />
     <instantiate from="root/SecurityAndroidManifest.xml.ftl"
@@ -21,8 +21,10 @@
                  to="${escapeXmlAttribute(resOut)}/xml/network_security_config.xml" />
     <merge from="root/build.gradle.ftl"
            to="${escapeXmlAttribute(projectOut)}/build.gradle" />
-    <merge from="root/res/values/styles.xml.ftl"
-                 to="${escapeXmlAttribute(resOut)}/values/styles.xml" />
+    <merge from="root/res/values/themes.xml.ftl"
+                 to="${escapeXmlAttribute(resOut)}/values/themes.xml" />
+    <merge from="root/res/values/colors.xml.ftl"
+                 to="${escapeXmlAttribute(resOut)}/values/colors.xml" />                 
     <instantiate from="root/src/app_package/StanwoodApp.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${className}.kt" />
     <instantiate from="root/src/app_package/di/AppComponent.kt.ftl"
