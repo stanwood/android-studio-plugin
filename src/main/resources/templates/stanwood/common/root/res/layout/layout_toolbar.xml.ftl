@@ -8,8 +8,8 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        app:scrim="@color/colorPrimary"
-        app:statusScrim="@color/colorPrimaryDark"
+        app:scrim="?colorPrimary"
+        app:statusScrim="?colorPrimaryVariant"
         app:titleTextView="@id/title">
             <ImageView
                 android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                     android:layout_height="match_parent"
                     android:gravity="start"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textColor="@color/color_on_primary" />
             </androidx.appcompat.widget.Toolbar>
     </io.stanwood.framework.ui.widget.ParallaxToolbarLayout>
  </#if>

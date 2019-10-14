@@ -3,7 +3,9 @@
 	<uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 </#if>
-    <application android:name="${packageName}.${className}" >
+    <application 
+    android:name="${packageName}.${className}" 
+    android:theme="@style/AppTheme.Light">
 
     </application>
 

@@ -7,8 +7,8 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
 import io.stanwood.debugapp.LoggingInterceptor
-import io.stanwood.framework.network.interceptor.ConnectivityInterceptor
-import io.stanwood.framework.network.retrofit.BufferedSourceConverterFactory
+import io.stanwood.framework.network.core.interceptor.ConnectivityInterceptor
+import io.stanwood.framework.network.core.retrofit.BufferedSourceConverterFactory
 import ${kotlinEscapedPackageName}.BuildConfig
 import ${kotlinEscapedPackageName}.datasource.net.${apiFolderName}.${apiClassName}
 import okhttp3.Cache

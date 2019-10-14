@@ -7,7 +7,7 @@ import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.impl.MemoryPolicy
 import com.nytimes.android.external.store3.base.impl.StoreBuilder
 import io.reactivex.Single
-import io.stanwood.framework.network.store.SerializationParserFactory
+import io.stanwood.framework.network.core.store.SerializationParserFactory
 import ${kotlinEscapedPackageName}.datasource.net.${apiFolderName}.${apiClassName}
 import ${kotlinEscapedPackageName}.datasource.net.${apiFolderName}.${apiModelClassName}
 import kotlinx.serialization.list

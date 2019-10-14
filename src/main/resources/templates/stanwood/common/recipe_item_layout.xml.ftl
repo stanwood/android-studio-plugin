@@ -1,8 +1,5 @@
 <#import "root://activities/common/kotlin_macros.ftl" as kt>
 <recipe folder="root://stanwood/common">
-    <merge from="root/res/values/item_layout_colors.xml.ftl"
-           to="${escapeXmlAttribute(resOut)}/values/colors.xml" />
-
     <merge from="root/res/values/item_layout_dimens.xml.ftl"
            to="${escapeXmlAttribute(resOut)}/values/dimens.xml" />
 

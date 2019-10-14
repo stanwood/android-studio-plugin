@@ -6,19 +6,19 @@ import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 <#if applicationPackage??>
 import ${applicationPackage}.R
 </#if>
 
 
-class ${activityClass} : AppCompatActivity(), HasSupportFragmentInjector {
+class ${activityClass} : AppCompatActivity(), HasAndroidInjector {
 
     @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
+    internal lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = androidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)

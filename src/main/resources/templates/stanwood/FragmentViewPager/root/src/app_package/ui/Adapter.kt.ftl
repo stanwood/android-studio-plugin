@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
 //TODO: Implement pager fragments
-class ${adapterName}(fm: FragmentManager, val context: Context) : FragmentStatePagerAdapter(fm) {
+class ${adapterName}(fm: FragmentManager, val context: Context) : FragmentStatePagerAdapter(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int) = Fragment()
 
     override fun getCount() = 3

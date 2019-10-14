@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 	    android:fitsSystemWindows="true"
-	    app:statusBarBackground="@color/colorPrimaryDark">
+	    app:statusBarBackground="?colorPrimaryVariant">
 <#if toolbarType=='appbar'>
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

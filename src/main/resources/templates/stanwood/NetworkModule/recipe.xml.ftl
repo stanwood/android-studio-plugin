@@ -10,7 +10,7 @@
     <dependency mavenUrl="org.jetbrains.kotlinx:kotlinx-serialization-runtime:${versionSerialization}" />
     <apply plugin="kotlinx-serialization" />
     <merge from="root/root.gradle.ftl"
-                  to="${escapeXmlAttribute(projectLocation)}/build.gradle" />
+                  to="${escapeXmlAttribute(topOut)}/build.gradle" />
 
     <instantiate from="root/src/app_package/datasource/NetworkModule.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/datasource/NetworkModule.kt" />

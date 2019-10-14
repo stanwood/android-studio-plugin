@@ -14,5 +14,9 @@
 <#if useVm>
 	<instantiate from="root/src/app_package/vm/ViewModel.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/vm/${viewModelName}.kt" />
+    <#if isClickableItem>
+    <instantiate from="root/src/app_package/vm/ActionListener.kt.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/vm/${viewModelName}ActionListener.kt" />
+    </#if>
 </#if>
 </recipe>
