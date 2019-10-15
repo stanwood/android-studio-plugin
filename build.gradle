@@ -38,11 +38,10 @@ intellij {
 }
 
 patchPluginXml {
-    changeNotes """-Update to IntelliJ 2019.2 and Kotlin 1.3.41
--Use DataBindingUtil for inflation if possible"""
+    changeNotes """Update templates to latest stanwood architecture release"""
     sinceBuild '181'
     untilBuild '192.*'
-    version '0.9.8'
+    version '1.0.0'
 }
 
 publishPlugin {
